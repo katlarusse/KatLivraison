@@ -5,4 +5,27 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 
+<application>
+		<resource-bundle>
+			<base-name>i18n.labels</base-name>
+			<var>messages</var>
+		</resource-bundle>
+		<locale-config>
+			<default-locale>fr</default-locale>
+			<supported-locale>en</supported-locale>
+			<supported-locale>fr</supported-locale>
+		</locale-config>
+	</application>
+	
+	
+	
+
+
+
+
+
+
+
+
+
 </faces-config>

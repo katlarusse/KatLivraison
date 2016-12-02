@@ -8,15 +8,16 @@
 	<title>Login</title>
 </h:head>
 <h:body>
+<f:view locale="#{languageController.locale}"/>
 
 	<form name="LoginForm" method="POST" action="j_security_check">
-		
+
 		<h:panelGrid columns="2" style="width: 433px; ">
-			<h:outputText value="Login : "></h:outputText>
+			<h:outputText value="#{messages['membre.login']}"></h:outputText>
 			<input name="j_username" type="text"></input>
-			<h:outputText value="Password : "></h:outputText>
+			<h:outputText value="#{messages['membre.password']}"></h:outputText>
 			<input name="j_password" type="password"></input>
-			<input type="submit" value="Submit" />
+			<input type="submit" value="#{messages['action.entrer']}" />
 		</h:panelGrid>
 
 	</form>
