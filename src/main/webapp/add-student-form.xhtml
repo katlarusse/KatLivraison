@@ -1,14 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<title>Ajout Etudiant</title>
+	<title>#{messages['action.ajouterEtudiant']}</title>
 
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="add-student-style.css" />
@@ -16,51 +16,76 @@
 </h:head>
 
 <h:body>
-
+	<f:view locale="#{languageController.locale}" />
 	<div id="wrapper">
 		<div id="header">
-			<h2>Licorne Universite</h2>
+			<h2>#{messages['uni']}</h2>
 		</div>
 	</div>
 
 	<div id="container">
-		<h3>Ajouter un étudiant</h3>
+		<h3>#{messages['action.ajouterEtudiant']}</h3>
 
 		<h:messages globalOnly="true" />
 
 		<h:form id="form" style="margin-top: 10px;">
-			<h:panelGrid columns="3">
+			<p:panelGrid columns="3" layout="grid">
 
-				<h:outputLabel>Prenom:</h:outputLabel>
-				<h:inputText value="#{student.firstName}" id="firstName"
-					required="true" requiredMessage="Votre prenom est obligatoire.">
+				<h:outputLabel>#{messages['membre.prenom']}</h:outputLabel>
+				<p:inputText value="#{student.firstName}" id="firstName"
+					required="true" requiredMessage="#{messages['required.prenom']}">
 					<f:validateLength minimum="3" />
-				</h:inputText>
+				</p:inputText>
 				<h:message for="firstName" errorStyle="color:red" />
 
-				<h:outputLabel>Nom:</h:outputLabel>
-				<h:inputText value="#{student.lastName}" id="lastName"
-					required="true" requiredMessage="Votre nom est obligatoire.">
+				<h:outputLabel>#{messages['membre.nom']}</h:outputLabel>
+				<p:inputText value="#{student.lastName}" id="lastName"
+					required="true" requiredMessage="#{messages['required.nom']}">
 					<f:validateLength minimum="3" />
-				</h:inputText>
+					<h:message for="lastName"></h:message>
+				</p:inputText>
 				<h:message for="lastName" errorStyle="color:red" />
 
-				<h:outputLabel>Email:</h:outputLabel>
-				<h:inputText value="#{student.email}" id="email" required="true"
-					requiredMessage="Votre adresse mail est obligatoire." />
+				<h:outputLabel>#{messages['membre.email']}</h:outputLabel>
+				<p:inputText value="#{student.email}" id="email" required="true"
+					requiredMessage="#{messages['required.email']}"
+					validatorMessage="#{messages['invalid.email']}">
+					<f:validateRegex
+						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
 				<h:message for="email" errorStyle="color:red" />
 
 				<h:outputLabel />
-				<h:commandButton value="Save" styleClass="save"
-					action="#{studentController.addStudent(student)}" />
-
-			</h:panelGrid>
+				<h:commandButton value="#{messages['action.save']}"
+					styleClass="save" action="#{studentController.addStudent(student)}" />
+			</p:panelGrid>
 		</h:form>
+
+
+
+		<!-- 		<p:inputText id="email" required="true" label="email" size="40" -->
+		<!-- 		requiredMessage="Please enter your email address." -->
+		<!-- 		validatorMessage="Invalid email format" -->
+		<!-- 		value="#{userBean.email}"> -->
+
+		<!-- 	  <f:validateRegex -->
+		<!-- 		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> -->
+
+		<!-- 	</p:inputText> -->
+		<!-- 	<p:watermark for="email" value="Email Address *" /> -->
+		<!-- 	<p:message for="email" /> -->
+
+		<!-- 	<p:commandButton value="test" style="margin:20px" -->
+		<!-- 		action="#{userBean.register}" ajax="false" /> -->
+
+
+
+
 
 		<div style="clear: both;"></div>
 
 		<p>
-			<h:outputLink value="list-students.xhtml">Retour à la liste</h:outputLink>
+			<h:outputLink value="list-students.xhtml">#{messages['action.retour']}</h:outputLink>
 		</p>
 
 	</div>
